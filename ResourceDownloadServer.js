@@ -17,8 +17,6 @@ var server = http.createServer(function(request, response) {
     pathname = decodeURI(pathname);
     var realPath = "." + pathname;
 
-	if(pathname == "/favicon.ico") return;
-	
 	var nowTime = new Date();
 	console.log("["+nowTime+"]Request file:"+realPath+" From:"+request.connection.remoteAddress); 
 
@@ -53,7 +51,7 @@ var server = http.createServer(function(request, response) {
                 }
 
                 if (request.headers[ifModifiedSince] && lastModified == request.headers[ifModifiedSince]) {
-                    if(DEBUG)   console.log("Not Modified ");
+                    if(DEBUG)   console.log("Not Modified");
                     response.writeHead(304, "Not Modified");
                     response.end();
                 }
