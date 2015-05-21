@@ -10,5 +10,7 @@
 2.  将下载的资源及封面分别放入*resources*文件夹和*covers*文件夹；
 3.  设置*config.js*中的DownloadServer的本机文件下载服务器的ip和port；
 4.  运行*start.sh*脚本。
+5.  运行*test.sh*脚本，可查看接口运行状态。
+
 
 
