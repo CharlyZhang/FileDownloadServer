@@ -17,6 +17,8 @@ var server = http.createServer(function(request, response) {
     pathname = decodeURI(pathname);
     var realPath = "." + pathname;
 
+	if(pathname == "/favicon.ico") return;
+	
 	var nowTime = new Date();
 	console.log("["+nowTime+"]Request file:"+realPath+" From:"+request.connection.remoteAddress); 
 
