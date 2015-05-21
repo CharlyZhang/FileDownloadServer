@@ -44,7 +44,7 @@ var server = http.createServer(function(request, response) {
 						if(ext == "dpub") {
 							var ctime = fs.statSync("./resources/"+filename).ctime;
 							var name = filename.split(".")[0];
-							item["id"] = ctime;
+							item["id"] = ctime.getTime();
 							item["name"] = name;
 							item["fileUrl"] = prefix + "resources/" + filename;
 							item["coverUrl"] = utils.checkCover(prefix,name);				
