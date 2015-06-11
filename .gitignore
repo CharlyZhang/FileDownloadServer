@@ -1,2 +1,4 @@
 covers/
 resources/
+node_modules/
+*.log
