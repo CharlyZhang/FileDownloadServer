@@ -22,6 +22,7 @@ var server = http.createServer(function(request, response) {
 		
 		var prefix = "http://" + downloadServer.IP + ":" + downloadServer.Port + "/";
 		var path = "./resources";
+		var path_pc = "./resources_pc";
 		var result = {"status":"success","data":"","msg":""};
 		var data = [];
 		
@@ -47,6 +48,39 @@ var server = http.createServer(function(request, response) {
 							item["id"] = ctime.getTime().toString();
 							item["name"] = name;
 							item["fileUrl"] = prefix + "resources/" + filename;
+							item["coverUrl"] = utils.checkCover(prefix,name);				
+							data.push(item);
+							if(DEBUG) console.log(item);
+							ind++;
+						}
+					}); 
+					response.write(JSON.stringify(result));
+					response.end();
+				}  
+			});  
+		}
+		else if(APIName == "/pcResourceList") {
+			fs.readdir(path_pc, function(err, files) {  
+				if (err) {  
+					console.log('Read dir error');  
+					result["status"] = "fail";
+					result["msg"] = "Read dir error";
+					response.writeHead(404, {'Content-Type': 'text/plain'});
+					response.write(JSON.stringify(result));
+					response.end();
+				} 
+				else {
+					var ind = 0;
+					result["data"] = data;
+					files.forEach(function(filename) { 
+						var item = {};
+						var ext = filename.split(".")[1];
+						if(ext == "dpub") {
+							var ctime = fs.statSync("./resources_pc/"+filename).ctime;
+							var name = filename.split(".")[0];
+							item["id"] = ctime.getTime().toString();
+							item["name"] = name;
+							item["fileUrl"] = prefix + "resources_pc/" + filename;
 							item["coverUrl"] = utils.checkCover(prefix,name);				
 							data.push(item);
 							if(DEBUG) console.log(item);
