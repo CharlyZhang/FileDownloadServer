@@ -18,7 +18,7 @@ var server = http.createServer(function(request, response) {
 		var nowTime = new Date();
 		console.log("["+nowTime+"] Request api:"+APIName);
 		
-		response.writeHead(200, {"Content-Type": "text/plain","Server": "Node/V5"});
+		response.writeHead(200, {"Content-Type": "text/plain;charset=UTF-8","Server": "Node/V5"});
 		
 		var prefix = "http://" + downloadServer.IP + ":" + downloadServer.Port + "/";
 		var path = "./resources";
