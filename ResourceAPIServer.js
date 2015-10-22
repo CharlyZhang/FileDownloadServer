@@ -7,16 +7,17 @@ var path = require("path");
 var fs = require("fs");
 var utils = require("./utils");
 var downloadServer = require("./config").DownloadServer;
+var port = require("./config").ResourceApiServer.Port;
 
 require("./json2.js");
-var DEBUG = true;
+var DEBUG = require("./config").debug;
 
 var server = http.createServer(function(request, response) {
  	if(request.url!=="/favicon.ico"){
 		var APIName = url.parse(request.url).pathname;
 		APIName = decodeURI(APIName);
 		var nowTime = new Date();
-		console.log("["+nowTime+"] Request api:"+APIName);
+		console.log("["+nowTime+"] Request api:"+APIName+"\n");
 		
 		response.writeHead(200, {"Content-Type": "text/plain;charset=UTF-8","Server": "Node/V5"});
 		
@@ -29,7 +30,7 @@ var server = http.createServer(function(request, response) {
 		if(APIName == "/resourceList") {
 			fs.readdir(path, function(err, files) {  
 				if (err) {  
-					console.log('Read dir error');  
+					console.log('Read dir error\n');  
 					result["status"] = "fail";
 					result["msg"] = "Read dir error";
 					response.writeHead(404, {'Content-Type': 'text/plain'});
@@ -62,7 +63,7 @@ var server = http.createServer(function(request, response) {
 		else if(APIName == "/pcResourceList") {
 			fs.readdir(path_pc, function(err, files) {  
 				if (err) {  
-					console.log('Read dir error');  
+					console.log('Read dir error\n');  
 					result["status"] = "fail";
 					result["msg"] = "Read dir error";
 					response.writeHead(404, {'Content-Type': 'text/plain'});
@@ -93,7 +94,7 @@ var server = http.createServer(function(request, response) {
 			});  
 		}
 		else {
-			console.log("Error: no responding api");
+			console.log("Error: no responding api\n");
 			result["status"] = "fail";
 			result["msg"] = "No conresponding api";
 			response.write(JSON.stringify(result));
@@ -102,7 +103,7 @@ var server = http.createServer(function(request, response) {
 	}
 });
 
-server.listen(8007, function() {
+server.listen(port, function() {
 	var nowTime = new Date();
-    console.log("["+nowTime+"]Resource api server listening on port 8007");
+    console.log("["+nowTime+"]Resource api server listening on port " + port + "\n");
 });
