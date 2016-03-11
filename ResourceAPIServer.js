@@ -8,6 +8,7 @@ var fs = require("fs");
 var utils = require("./utils");
 var downloadServer = require("./config").DownloadServer;
 var port = require("./config").ResourceApiServer.Port;
+var uuid = require('node-uuid');
 
 require("./json2.js");
 var DEBUG = require("./config").debug;
@@ -44,9 +45,8 @@ var server = http.createServer(function(request, response) {
 						var item = {};
 						var ext = filename.split(".")[1];
 						if(ext == "dpub") {
-							var ctime = fs.statSync("./resources/"+filename).ctime;
 							var name = filename.split(".")[0];
-							item["id"] = ctime.getTime().toString();
+							item["id"] = uuid.v4();;
 							item["name"] = name;
 							item["fileUrl"] = prefix + "resources/" + filename;
 							item["coverUrl"] = utils.checkCover(prefix,name);				
