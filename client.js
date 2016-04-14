@@ -1,7 +1,8 @@
 var http = require("http");
+var port = require("./config").ResourceApiServer.Port;
 var option = {
 	hostname : '127.0.0.1', 
-	port : '8007',
+	port : port,
 	path : '/resourceList',
 	method : 'get'
 }
