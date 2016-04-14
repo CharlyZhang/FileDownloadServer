@@ -46,7 +46,7 @@ var server = http.createServer(function(request, response) {
 						var ext = filename.split(".")[1];
 						if(ext == "dpub") {
 							var name = filename.split(".")[0];
-							item["id"] = uuid.v4();;
+							item["id"] = name;
 							item["name"] = name;
 							item["fileUrl"] = prefix + "resources/" + filename;
 							item["coverUrl"] = utils.checkCover(prefix,name);				
@@ -77,9 +77,8 @@ var server = http.createServer(function(request, response) {
 						var item = {};
 						var ext = filename.split(".")[1];
 						if(ext == "dpub") {
-							var ctime = fs.statSync("./resources_pc/"+filename).ctime;
 							var name = filename.split(".")[0];
-							item["id"] = ctime.getTime().toString();
+							item["id"] = name;
 							item["name"] = name;
 							item["fileUrl"] = prefix + "resources_pc/" + filename;
 							item["coverUrl"] = utils.checkCover(prefix,name);				
