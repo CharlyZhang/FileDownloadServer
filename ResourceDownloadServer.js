@@ -9,7 +9,7 @@ var mime = require("./mime").types;
 var config = require("./config");
 var utils = require("./utils");
 var zlib = require("zlib");
-var port = require("./config").DownloadServer.Port;
+var port = require("./config").DownloadServer.ListenningPort;
 var DEBUG = require("./config").debug;
 
 var server = http.createServer(function(request, response) {

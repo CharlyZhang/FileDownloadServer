@@ -15,8 +15,8 @@ exports.Compress = {
 };
 
 exports.DownloadServer = {
-    "IP": 	"127.0.0.1",  //此处必须重新设置，否则文件无法下载
-	"Port": "8888"
+    "Address": 	"127.0.0.1:8888",  //IP:PORT 此处必须重新设置，否则文件无法下载
+	"ListenningPort": "8888"
 };
 
 exports.ResourceApiServer = {

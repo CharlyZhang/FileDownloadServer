@@ -22,7 +22,7 @@ var server = http.createServer(function(request, response) {
 		
 		response.writeHead(200, {"Content-Type": "text/plain;charset=UTF-8","Server": "Node/V5"});
 		
-		var prefix = "http://" + downloadServer.IP + ":" + downloadServer.Port + "/";
+		var prefix = "http://" + downloadServer.Address + "/";
 		var path = "./resources";
 		var path_pc = "./resources_pc";
 		var result = {"status":"success","data":"","msg":""};
